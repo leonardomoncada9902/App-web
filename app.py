@@ -44,7 +44,7 @@ if sort == 'Orden ascendente':
         st.write(df.query('days_listed <=180').sort_values(by='days_listed', ascending=True))
 
     elif option == "Todos":
-        st.write(df)
+        st.write(df.sort_values(by='days_listed', ascending=True))
 
 
 elif sort == 'Orden descendente':
@@ -59,7 +59,7 @@ elif sort == 'Orden descendente':
         st.write(df.query('days_listed <=180').sort_values(by='days_listed', ascending=False))
 
     elif option == "Todos":
-        st.write(df)
+        st.write(df.sort_values(by='days_listed', ascending=False))
 
 elif sort == 'Aleatorio':
 
@@ -74,6 +74,8 @@ elif sort == 'Aleatorio':
 
     elif option == "Todos":
         st.write(df)
+
+
 
 
 
