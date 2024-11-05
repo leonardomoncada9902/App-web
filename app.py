@@ -14,68 +14,94 @@ st.header('Bienvenido a mi primera app web 	:bulb:')
 
 st.write('Tabla de autos ofertados en los ultimos 270 dias.')
 
-# Impresion de dataset en la app web
+# Creacion de columnas para seleccion de formato de tabla
 
 col1, col2 = st.columns(2)
 
-with col1:
+with col1: # Columna 1
+
+    # Creacion de selector de numero de dias
 
     option = st.selectbox(
         "Mostrar autos ofertados:",
         ("Ultimos 30 dias", "Ultimos 90 dias", "Ultimos 180 dias", "Todos"),
     )
 
-with col2: 
+with col2: # Columna 2
+
+    # Configuracion de orden de la tabla
 
     sort = st.radio(
         "Ordena la lista",
         ["Orden ascendente", "Orden descendente", "Aleatorio"],
         key="visibility")
     
-if sort == 'Orden ascendente':
+# Implementacion de opciones en la columnas 1 y 2 
+    
+if sort == 'Orden ascendente': # Orden ascendente
 
-    if option == "Ultimos 30 dias":
-        st.write(df.query('days_listed <=30').sort_values(by='days_listed', ascending=True))
+    if option == "Ultimos 30 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 30 en orden ascendente
+        st.write(df.query('days_listed <=30').sort_values(by='days_listed', ascending=True)) 
 
-    elif option == "Ultimos 90 dias":
+    elif option == "Ultimos 90 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 90 en orden ascendente
         st.write(df.query('days_listed <=90').sort_values(by='days_listed', ascending=True))
 
-    elif option == "Ultimos 180 dias":
+    elif option == "Ultimos 180 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 180 en orden ascendente
         st.write(df.query('days_listed <=180').sort_values(by='days_listed', ascending=True))
 
-    elif option == "Todos":
+    elif option == "Todos": # Ordenamiento de los valores de dt sobre la columna 'days_listed' en orden ascendente
         st.write(df.sort_values(by='days_listed', ascending=True))
 
 
-elif sort == 'Orden descendente':
+elif sort == 'Orden descendente': # Orden descendente
 
-    if option == "Ultimos 30 dias":
+    if option == "Ultimos 30 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 30 en orden descendente
         st.write(df.query('days_listed <=30').sort_values(by='days_listed', ascending=False))
 
-    elif option == "Ultimos 90 dias":
+    elif option == "Ultimos 90 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 90 en orden descendente
         st.write(df.query('days_listed <=90').sort_values(by='days_listed', ascending=False))
 
-    elif option == "Ultimos 180 dias":
+    elif option == "Ultimos 180 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 180 en orden descendente
         st.write(df.query('days_listed <=180').sort_values(by='days_listed', ascending=False))
 
-    elif option == "Todos":
+    elif option == "Todos": # Ordenamiento de los valores de dt sobre la columna 'days_listed' en orden descendente
         st.write(df.sort_values(by='days_listed', ascending=False))
 
-elif sort == 'Aleatorio':
+elif sort == 'Aleatorio': # Orden aleatorio
 
-    if option == "Ultimos 30 dias":
+    if option == "Ultimos 30 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 30 en orden aleatorio
         st.write(df.query('days_listed <=30'))
 
-    elif option == "Ultimos 90 dias":
+    elif option == "Ultimos 90 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 90 en orden aleatorio
         st.write(df.query('days_listed <=90'))
 
-    elif option == "Ultimos 180 dias":
+    elif option == "Ultimos 180 dias": # Fitrado de df en valores de la columna 'days_listed' en valores entre 0 y 180 en orden aleatorio
         st.write(df.query('days_listed <=180'))
 
-    elif option == "Todos":
+    elif option == "Todos": # Impresion de df sin modificar 
         st.write(df)
 
 
+st.write('Comparacion del tipo de combustible usado por vehiculo. :fuelpump:')
+
+# Impresion de histograma de los datos de la columna 'fuel'
+
+fig1 = px.histogram(df, x="fuel", text_auto=True).update_xaxes(categoryorder='total descending')
+st.plotly_chart(fig1, use_container_width=True)
+
+st.write('Grafico de dispercion en relacion al precio y el modelo del vehiculo. :heavy_dollar_sign:')
+
+# Impresion de grafico de dispercion de los datos de la columna 'price' y 'model_year'
+
+fig2 = px.scatter(df, x="price", y="model_year",color="model_year")
+st.plotly_chart(fig2, use_container_width=True)
+
+st.write('Histograma del precio comparado con la condicion del automovil. :money_with_wings:')
+
+# Impresion de histograma de los datos de la columna 'price' comparado con la columna 'condition'
+
+fig3 = px.histogram(df, x="price", color="condition")
+st.plotly_chart(fig3, use_container_width=True)
 
 
 
