@@ -117,6 +117,8 @@ df_tr = df.query('model_year >= 2010').pivot_table(index=['type'],
 
 # Implementacion de casilla 
 
+st.write('Grafico de dispercion con relacion al año del vehiclo y el tipo. :racing_car:')
+
 modern = st.checkbox("Solo autos modernos (2010 en delante)")
 
 if modern: # Si modern es seleccionado muestra grafica de datos filtrados de 'df_tr'
