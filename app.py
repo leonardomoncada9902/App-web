@@ -16,23 +16,64 @@ st.write('Tabla de autos ofertados en los ultimos 270 dias.')
 
 # Impresion de dataset en la app web
 
-option = st.selectbox(
-    "Mostrar autos ofertados:",
-    ("Ultimos 30 dias", "Ultimos 90 dias", "Ultimos 180 dias", "Todos"),
-)
+col1, col2 = st.columns(2)
 
-if option == "Ultimos 30 dias":
-    st.write(df.query('days_listed <=30'))
+with col1:
 
-elif option == "Ultimos 90 dias":
-    st.write(df.query('days_listed <=90'))
+    option = st.selectbox(
+        "Mostrar autos ofertados:",
+        ("Ultimos 30 dias", "Ultimos 90 dias", "Ultimos 180 dias", "Todos"),
+    )
 
-elif option == "Ultimos 180 dias":
-    st.write(df.query('days_listed <=180'))
+with col2: 
 
-elif option == "Todos":
-    st.write(df)
+    sort = st.radio(
+        "Ordena la lista",
+        ["Orden ascendente", "Orden descendente", "Aleatorio"],
+        key="visibility")
+    
+if sort == 'Orden ascendente':
 
+    if option == "Ultimos 30 dias":
+        st.write(df.query('days_listed <=30'.sort_values(by='days_listed', ascending=True)))
+
+    elif option == "Ultimos 90 dias":
+        st.write(df.query('days_listed <=90'.sort_values(by='days_listed', ascending=True)))
+
+    elif option == "Ultimos 180 dias":
+        st.write(df.query('days_listed <=180'.sort_values(by='days_listed', ascending=True)))
+
+    elif option == "Todos":
+        st.write(df)
+
+
+elif sort == 'Orden descendente':
+
+    if option == "Ultimos 30 dias":
+        st.write(df.query('days_listed <=30'.sort_values(by='days_listed', ascending=False)))
+
+    elif option == "Ultimos 90 dias":
+        st.write(df.query('days_listed <=90'.sort_values(by='days_listed', ascending=False)))
+
+    elif option == "Ultimos 180 dias":
+        st.write(df.query('days_listed <=180'.sort_values(by='days_listed', ascending=False)))
+
+    elif option == "Todos":
+        st.write(df)
+
+elif sort == 'Aleatorio':
+
+    if option == "Ultimos 30 dias":
+        st.write(df.query('days_listed <=30'))
+
+    elif option == "Ultimos 90 dias":
+        st.write(df.query('days_listed <=90'))
+
+    elif option == "Ultimos 180 dias":
+        st.write(df.query('days_listed <=180'))
+
+    elif option == "Todos":
+        st.write(df)
 
 
 
