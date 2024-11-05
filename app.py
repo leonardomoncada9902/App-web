@@ -124,14 +124,14 @@ if modern: # Si modern es seleccionado muestra grafica de datos filtrados de 'df
     fig = px.scatter(df_tr, x="model", y="type",
                 size="model", color="type",
                     hover_name="type", log_x=True, size_max=60)
-    fig.show()
+    st.plotly_chart(fig3, use_container_width=True)
 
 else: # Si modern no es seleccionado muestra grafica de datos de 'df_t'
 
     fig = px.scatter(df_t, x="model", y="type",
                 size="model", color="type",
                     hover_name="type", log_x=True, size_max=60)
-    fig.show()
+    st.plotly_chart(fig3, use_container_width=True)
 
 
 
