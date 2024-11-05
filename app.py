@@ -4,7 +4,9 @@ import plotly.express as px
 
 # Lectura de los datos del dataframe 
 
-df = pd.read_csv('/Users/leonardo/Documents/Python/Herramientas-de-desarrollo-software/App-web/vehicles_us.csv')
+url = 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/Data_sprint_4_Refactored/vehicles_us.csv'
+
+df = pd.read_csv(url)
 
 # Creacion de encabezado de app web
 
