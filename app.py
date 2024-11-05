@@ -103,6 +103,37 @@ st.write('Histograma del precio comparado con la condicion del automovil. :money
 fig3 = px.histogram(df, x="price", color="condition")
 st.plotly_chart(fig3, use_container_width=True)
 
+# Creacion de tabla dinamica de df con base a columnas 'type' y 'model'
+
+df_t = df.pivot_table(index=['type'],
+                            values='model',
+                            aggfunc='count').reset_index()
+
+# Creacion de tabla dinamica de df filtrado en 'model_year' datos solo de 2010 en adelante con base a columnas 'type' y 'model'
+
+df_tr = df.query('model_year >= 2010').pivot_table(index=['type'],
+                            values='model',
+                            aggfunc='count').reset_index()
+
+# Implementacion de casilla 
+
+modern = st.checkbox("Solo autos modernos (2010 en delante)")
+
+if modern: # Si modern es seleccionado muestra grafica de datos filtrados de 'df_tr'
+    
+    fig = px.scatter(df_tr, x="model", y="type",
+                size="model", color="type",
+                    hover_name="type", log_x=True, size_max=60)
+    fig.show()
+
+else: # Si modern no es seleccionado muestra grafica de datos de 'df_t'
+
+    fig = px.scatter(df_t, x="model", y="type",
+                size="model", color="type",
+                    hover_name="type", log_x=True, size_max=60)
+    fig.show()
+
+
 
 
 
