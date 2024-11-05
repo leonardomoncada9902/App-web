@@ -12,11 +12,30 @@ df = pd.read_csv(url)
 
 st.header('Bienvenido a mi primera app web 	:bulb:')
 
-st.write('Este es el dataframe que analizaremos:')
+st.write('Tabla de autos ofertados en los ultimos 270 dias.')
 
 # Impresion de dataset en la app web
 
-st.write(df)
+option = st.selectbox(
+    "Mostrar autos ofertados:",
+    ("Ultimos 30 dias", "Ultimos 90 dias", "Ultimos 180 dias", "Todos"),
+)
+
+if option == "Ultimos 30 dias":
+    st.write(df.query('days_listed <=30'))
+
+elif option == "Ultimos 90 dias":
+    st.write(df.query('days_listed <=90'))
+
+elif option == "Ultimos 180 dias":
+    st.write(df.query('days_listed <=180'))
+
+elif option == "Todos":
+    st.write(df)
+
+
+
+
 
 
 
