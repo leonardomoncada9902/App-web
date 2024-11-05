@@ -121,17 +121,17 @@ modern = st.checkbox("Solo autos modernos (2010 en delante)")
 
 if modern: # Si modern es seleccionado muestra grafica de datos filtrados de 'df_tr'
     
-    fig = px.scatter(df_tr, x="model", y="type",
+    fig4 = px.scatter(df_tr, x="model", y="type",
                 size="model", color="type",
                     hover_name="type", log_x=True, size_max=60)
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig4, use_container_width=True)
 
 else: # Si modern no es seleccionado muestra grafica de datos de 'df_t'
 
-    fig = px.scatter(df_t, x="model", y="type",
+    fig5 = px.scatter(df_t, x="model", y="type",
                 size="model", color="type",
                     hover_name="type", log_x=True, size_max=60)
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig5, use_container_width=True)
 
 
 
