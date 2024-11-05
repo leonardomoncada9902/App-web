@@ -35,13 +35,13 @@ with col2:
 if sort == 'Orden ascendente':
 
     if option == "Ultimos 30 dias":
-        st.write(df.query('days_listed <=30'.sort_values(by='days_listed', ascending=True)))
+        st.write(df.query('days_listed <=30').sort_values(by='days_listed', ascending=True))
 
     elif option == "Ultimos 90 dias":
-        st.write(df.query('days_listed <=90'.sort_values(by='days_listed', ascending=True)))
+        st.write(df.query('days_listed <=90').sort_values(by='days_listed', ascending=True))
 
     elif option == "Ultimos 180 dias":
-        st.write(df.query('days_listed <=180'.sort_values(by='days_listed', ascending=True)))
+        st.write(df.query('days_listed <=180').sort_values(by='days_listed', ascending=True))
 
     elif option == "Todos":
         st.write(df)
@@ -50,13 +50,13 @@ if sort == 'Orden ascendente':
 elif sort == 'Orden descendente':
 
     if option == "Ultimos 30 dias":
-        st.write(df.query('days_listed <=30'.sort_values(by='days_listed', ascending=False)))
+        st.write(df.query('days_listed <=30').sort_values(by='days_listed', ascending=False))
 
     elif option == "Ultimos 90 dias":
-        st.write(df.query('days_listed <=90'.sort_values(by='days_listed', ascending=False)))
+        st.write(df.query('days_listed <=90').sort_values(by='days_listed', ascending=False))
 
     elif option == "Ultimos 180 dias":
-        st.write(df.query('days_listed <=180'.sort_values(by='days_listed', ascending=False)))
+        st.write(df.query('days_listed <=180').sort_values(by='days_listed', ascending=False))
 
     elif option == "Todos":
         st.write(df)
